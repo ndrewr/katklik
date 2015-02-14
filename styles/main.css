@@ -63,19 +63,48 @@ body {
 	margin-top: 28px;
 }
 
+/* My styles */
+button:focus {
+/*	outline: thin dotted;*/
+	outline: none !important;
+}
+button:active {
+/*	outline: dotted black 1px;*/
+	outline: none;
+
+}
+
 canvas {
 	background: #c7ddd8;
 	margin-top: 5px;
 	margin-left: 5px;
 }
 
+#catstage img {
+	height: 150px;
+	width: auto;
+}
+
 .cube {
+	position: relative;
 	background: #aaa7a7;
-	height: 250px;
+	height: 160px;
 	width: 100px;
 	border-radius: 0.2em;
 /*	box-shadow: 3px 3px 5px 5px #ccc;*/
 	display: inline-block;
+	padding-bottom: 5px;
+}
+.cube span {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	border-radius: 1em;
+	font-size: 1em;
+	background: yellow;
+	width: 1em;
+	text-align: center;
+
 }
 
 #infoboard {

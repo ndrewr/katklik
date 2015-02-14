@@ -9,7 +9,7 @@
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 		<!-- build:css(.) styles/vendor.css -->
 		<!-- bower:css -->
-		<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="library/bootstrap/dist/css/bootstrap.css" />
 		<!-- endbower -->
 		<!-- endbuild -->
 		<!-- build:css(.tmp) styles/main.css -->
@@ -45,26 +45,24 @@
 				</h2>
 			</section>
 
-			<section id="catbox" data-bind="foreach: kats">
-<!--
-			<table>
-				<tbody data-bind="foreach: kats">
-					<tr>
--->
+			<section id="catstage" class="jumbotron">
 
-						<div class="cube" data-bind="click: $root.counterUp">
+				<img src="../app/images/catHead.jpg">
+				<div class="counter" data-bind="text: klikcount"></div>
+				<button class="btn btn-warning btn-lg" data-bind="click: counterUp">DO IT</button>
+
+			</section>
+
+			<section id="catbox" data-bind="foreach: kats">
+<!--						<div class="cube" data-bind="click: $root.counterUp">-->
+<!--				<div class="cube" data-bind="click: $root.selectKat.bind($data, $index)">-->
+				<div class="cube" data-bind="click: function(data, event) { $root.selectKat($index(), data, event) }">
+
 							<h4 data-bind="text: name"></h4>
 							<img src="../app/images/cat1.jpg"/>
-							<div class="counter" data-bind="text: klikcount"></div>
+<!--							<div class="counter" data-bind="text: klikcount"></div>-->
+							<span data-bind="text: klikcount"></span>
 						</div>
-<!--
-
-					</tr>
-				</tbody>
-			</table>
--->
-
-
 			</section>
 
 			<div class="row marketing">
@@ -88,7 +86,7 @@
 
 		<!-- build:js(.) scripts/vendor.js -->
 		<!-- bower:js -->
-		<script src="../bower_components/jquery/dist/jquery.js"></script>
+		<script src="library/jquery/dist/jquery.js"></script>
 		<!-- endbower -->
 		<!-- endbuild -->
 
@@ -103,7 +101,7 @@
 		</script>
 
 				<!-- build:js(.) scripts/plugins.js -->
-		<script src="../bower_components/knockout/dist/knockout.js"></script>
+		<script src="library/knockout/dist/knockout.js"></script>
 				<!-- endbuild -->
 
 				<!-- build:js({app,.tmp}) scripts/main.js -->
