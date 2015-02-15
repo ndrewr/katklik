@@ -32,7 +32,8 @@
 				<h3 class="text-muted">katklik</h3>
 			</div>
 
-			<h1>'Allo, 'Allo!	</h1>
+			<h1>'Allo, 'Allo!	<small class="lead">
+				You can call me <span data-bind="text: name"></span></small></h1>
 <!--			Me name's <span data-bind="text: name"></span>-->
 			<section id="infoboard">
 				<h2 style="float:left;">
@@ -46,11 +47,9 @@
 			</section>
 
 			<section id="catstage" class="jumbotron">
-
 				<img src="../app/images/catHead.jpg">
 				<div class="counter" data-bind="text: klikcount"></div>
-				<button class="btn btn-warning btn-lg" data-bind="click: counterUp">DO IT</button>
-
+				<button class="btn btn-warning btn-lg btn-block" data-bind="click: counterUp">DO IT</button>
 			</section>
 
 			<section id="catbox" data-bind="foreach: kats">
@@ -65,15 +64,20 @@
 						</div>
 			</section>
 
+			<div id="admin">
+				<a class="btn btn-default" href="#" data-bind="click: toggleAdmin">ADMIN</a>
+				<form data-bind="submit: modifyKat, visible: admin_mode()">
+					<input name="name" type="text" data-bind="value: name">
+					<input name="klikcount" type="text" data-bind="value: klikcount">
+					<button class="btn btn-primary" type="submit">DO IT</button>
+					<button class="btn btn-danger" data-bind="click: toggleAdmin">CANCEL</button>
+				</form>
+			</div>
+
 			<div class="row marketing">
 				<div class="col-lg-6">
 					<h4>Instructions (loose guidelines, really)</h4>
 					<p>See the 'kat'. Click the 'kat'.</p>
-					<p>Change his name here:
-						<input data-bind="value: name">
-					</p>
-
-
 				</div>
 			</div>
 

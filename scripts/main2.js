@@ -2,19 +2,16 @@
 function Kat(given_name) {
 	var self = this;
 
-	if(given_name)
-		self.name = given_name;
-	else
-		namey.get(function(data) {
-			self.name = data[0];
-		});
-
+	if(!given_name)
+		namey.get(function(data) { given_name = data[0]; });
+	self.name = ko.observable(given_name);
 	self.klikcount = ko.observable(0).extend({ notify: 'always' });;
 //	self.klikcount.extend({ notify: 'always' });
 }
 
 function KlikKatViewModel() {
 	var self = this;
+	self.admin_mode = ko.observable(false);
 	self.chosen_cat = ko.observable(0); // keep track of selected kitty
 	self.current_kat = ko.observable();
 
@@ -24,6 +21,9 @@ function KlikKatViewModel() {
 		new Kat("Pearls")
 	]);
 	self.current_kat(self.kats()[0]);
+	self.name = ko.computed(function() {
+		return self.kats()[self.chosen_cat()].name();
+	});
 
 //	self.klikcount = ko.observable(0);
 	self.klikcount = ko.computed(function() {
@@ -71,6 +71,26 @@ function KlikKatViewModel() {
 
 		}
 	}
+
+	self.toggleAdmin = function() {
+			self.admin_mode(!self.admin_mode());
+	}
+
+	self.hideAdmin = function() {
+		self.admin_mode(false);
+	}
+
+	self.modifyKat = function(formElement) {
+		console.log("Modifying Kat! Element is %O", formElement);
+		console.log("values are %s and %s", formElement.elements["name"].value, formElement.elements["klikcount"].value);
+
+		var form_elements = formElement.elements;
+		self.kats()[self.chosen_cat()].name( form_elements["name"].value);
+		self.kats()[self.chosen_cat()].klikcount(form_elements["klikcount"].value);
+		self.toggleAdmin();
+
+	}
+
 }
 
 ko.applyBindings(new KlikKatViewModel());
