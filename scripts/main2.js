@@ -30,6 +30,10 @@ function KlikKatViewModel() {
 		return self.kats()[self.chosen_cat()].klikcount();
 	});
 
+	self.katrank = ko.computed(function() {
+		return (self.klikcount() < 5)? "Novice" : (self.klikcount() > 10)? "Master" : "Pro";
+	});
+
 
 
 	self.selectKat = function(index, kat, event) {
