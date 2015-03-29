@@ -77,7 +77,7 @@ function KlikKatViewModel() {
 	}
 
 	self.toggleAdmin = function() {
-			self.admin_mode(!self.admin_mode());
+		self.admin_mode(!self.admin_mode());
 	}
 
 	self.hideAdmin = function() {
@@ -90,7 +90,7 @@ function KlikKatViewModel() {
 
 		var form_elements = formElement.elements;
 		self.kats()[self.chosen_cat()].name( form_elements["name"].value);
-		self.kats()[self.chosen_cat()].klikcount(form_elements["klikcount"].value);
+		self.kats()[self.chosen_cat()].klikcount(parseInt(form_elements["klikcount"].value), 10);
 		self.toggleAdmin();
 
 	}
